@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 export class ListEmployeesComponent implements OnInit {
 
   employees: Employee[];
-  private selectedEmployeeId: number;
+  selectedEmployeeId: number;
 
   constructor(private _empService: EmployeeService, private _router: Router,
     private _activatedRoute: ActivatedRoute) { }
