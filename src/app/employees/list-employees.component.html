@@ -1,1 +1,26 @@
-<p>list-employees works!</p>
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <tabel class="table table-hover">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Salary</th>
+                    <th>Project Name</th>
+                    <th>Manager Name</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees">
+                        <td>{{employee.empId}}</td>
+                        <td>{{employee.empName}}</td>
+                        <td>{{employee.empDesignation}}</td>
+                        <td>{{employee.empSalary}}</td>
+                        <td>{{employee.empProjectName}}</td>
+                        <td>{{employee.empManager}}</td>
+                    </tr>
+                </tbody>
+            </tabel>
+        </div>
+    </div>
+</div>
