@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './employee.service';
 import { Employee } from '../Models/employee.model';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 
 
 
@@ -12,11 +12,14 @@ import { Router } from '@angular/router'
 export class ListEmployeesComponent implements OnInit {
 
   employees: Employee[];
+  private selectedEmployeeId: number;
 
-  constructor(private _empService: EmployeeService, private _router: Router) { }
+  constructor(private _empService: EmployeeService, private _router: Router,
+    private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
+    this.selectedEmployeeId = +this._activatedRoute.snapshot.params['id'];
     this.employees = this._empService.getEmployees();
   }
 

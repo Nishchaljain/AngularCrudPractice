@@ -13,7 +13,7 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let employee of employees">
+                    <tr *ngFor="let employee of employees" [class.text-danger]="selectedEmployeeId ===employee.empId">
                         <td>{{employee.empId}}</td>
                         <td>{{employee.empName}}</td>
                         <td>{{employee.empDesignation}}</td>
