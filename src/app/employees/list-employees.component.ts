@@ -13,6 +13,7 @@ export class ListEmployeesComponent implements OnInit {
 
   employees: Employee[];
   selectedEmployeeId: number;
+  searchTerm: string;
 
   constructor(private _empService: EmployeeService, private _router: Router,
     private _activatedRoute: ActivatedRoute) { }

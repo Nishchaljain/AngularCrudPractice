@@ -1,7 +1,11 @@
 <div class="container">
+    <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search By Name"
+            style="width: 300px;" />
+
+    </div>
     <div class="col-md-12">
         <div class="row">
-
             <table class="table table-hover">
                 <thead>
                     <th>ID</th>
@@ -13,7 +17,8 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let employee of employees" [class.text-danger]="selectedEmployeeId ===employee.empId">
+                    <tr *ngFor="let employee of employees | employeeCustomFilter:searchTerm"
+                        [class.text-danger]="selectedEmployeeId ===employee.empId">
                         <td>{{employee.empId}}</td>
                         <td>{{employee.empName}}</td>
                         <td>{{employee.empDesignation}}</td>
