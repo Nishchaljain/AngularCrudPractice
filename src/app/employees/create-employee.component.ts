@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Employee } from '../Models/employee.model';
+import { EmployeeService } from './employee.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-create-employee',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateEmployeeComponent implements OnInit {
 
-  constructor() { }
+
+  employee: Employee = {
+    empId: null,
+    empName: null,
+    empDesignation: null,
+    empSalary: null,
+    empProjectName: null,
+    empManager: null,
+  }
+
+  constructor(private _empService: EmployeeService,
+    private _router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onSaveEmployee(employee: Employee) {
+    this._empService.insertEmployee(employee);
+    this._router.navigate(['/list'])
+
+
   }
 
 }

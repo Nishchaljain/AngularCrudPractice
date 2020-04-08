@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../Models/employee.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+
+  employee: Employee;
 
   employees: Employee[] = [
     {
@@ -58,5 +61,13 @@ export class EmployeeService {
 
   getEmployees() {
     return this.employees;
+  }
+
+  insertEmployee(employee: Employee) {
+    this.employees.push(employee);
+  }
+
+  editEmployee(empID: number) {
+    return this.employees.find(e => e.empId === empID);
   }
 }
