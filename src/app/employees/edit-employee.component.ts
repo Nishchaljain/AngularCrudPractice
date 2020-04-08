@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EmployeeService } from './employee.service';
+import { Employee } from '../Models/employee.model';
 
 @Component({
   selector: 'app-edit-employee',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditEmployeeComponent implements OnInit {
 
-  constructor() { }
+  employee: Employee;
+  constructor(private _activatedRoute: ActivatedRoute,
+    private _empService: EmployeeService,
+    private _route: Router) { }
 
   ngOnInit(): void {
+    const id = +this._activatedRoute.snapshot.params['id'];
+    this.employee = Object.assign({}, this._empService.getEmployeeById(id));
+  }
+
+  onUpdateClick(employee: Employee) {
+
+    this._empService.updateEmployee(employee);
+    this._empService.getEmployees();
+    this._route.navigate(['/list']);
+
   }
 
 }

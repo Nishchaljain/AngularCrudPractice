@@ -59,15 +59,27 @@ export class EmployeeService {
 
   constructor() { }
 
-  getEmployees() {
+  getEmployees(): Employee[] {
     return this.employees;
+  }
+
+  getEmployeeById(empID: number): Employee {
+    return this.employees.find(e => e.empId === empID);
   }
 
   insertEmployee(employee: Employee) {
     this.employees.push(employee);
   }
 
-  editEmployee(empID: number) {
-    return this.employees.find(e => e.empId === empID);
+  updateEmployee(employee: Employee) {
+    const index = this.employees.findIndex(e => e.empId == employee.empId);
+    this.employees[index] = employee;
+  }
+
+  deleteEmployee(empID: number) {
+    const index = this.employees.findIndex(e => e.empId === empID);
+    if (index !== -1) {
+      this.employees.splice(index, 1);
+    }
   }
 }

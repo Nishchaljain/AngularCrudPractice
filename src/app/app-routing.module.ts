@@ -6,10 +6,10 @@ import { EditEmployeeComponent } from './employees/edit-employee.component';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: 'list', component: ListEmployeesComponent, pathMatch: 'full' },
   { path: 'create', component: CreateEmployeeComponent, pathMatch: 'full' },
-  { path: '', redirectTo: '/list', pathMatch: 'full' },
-  { path: 'edit', component: EditEmployeeComponent, pathMatch: 'full' },
+  { path: 'editEmployee/:id', component: EditEmployeeComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

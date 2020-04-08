@@ -30,8 +30,6 @@ export class CreateEmployeeComponent implements OnInit {
   onSaveEmployee(employee: Employee) {
     this._empService.insertEmployee(employee);
     this._router.navigate(['/list'])
-
-
   }
 
 }

@@ -21,12 +21,10 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   onEditClick(empID: number) {
-    this._empService.editEmployee(empID);
-    this._router.navigate(['/edit']);
-
+    this._router.navigate(['/editEmployee', empID]);
   }
   deleteEmployee(empID: number) {
-
+    this._empService.deleteEmployee(empID);
   }
 
 }
