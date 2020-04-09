@@ -5,6 +5,9 @@ import { CreateEmployeeComponent } from './employees/create-employee.component';
 import { EditEmployeeComponent } from './employees/edit-employee.component';
 import { CreateEmployeeCanDeactivateGuardService } from './employees/create-employee-can-deactivate-guard.service'
 import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
+import { PageNotFoundComponent } from './pagenotfound/page-not-found.component';
+import { EmployeeDetailsComponent } from './employees/employee-details.component';
+import { EmployeeDetailsGaurdService } from './employees/employee-details-gaurd.service';
 
 
 const routes: Routes = [
@@ -21,14 +24,33 @@ const routes: Routes = [
     canDeactivate: [CreateEmployeeCanDeactivateGuardService],
     pathMatch: 'full'
   },
-  { path: 'editEmployee/:id', component: EditEmployeeComponent, pathMatch: 'full' },
+  {
+    path: 'editEmployee/:id',
+    component: EditEmployeeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'employeeDetail/:id',
+    component: EmployeeDetailsComponent,
+    pathMatch: 'full',
+    canActivate: [EmployeeDetailsGaurdService]
+  },
+  {
+    path: 'notfound',
+    component: PageNotFoundComponent,
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { enableTracing: true })
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
-  providers: [CreateEmployeeCanDeactivateGuardService, EmployeeListResolverService]
+  providers: [
+    CreateEmployeeCanDeactivateGuardService,
+    EmployeeListResolverService,
+    EmployeeDetailsGaurdService
+  ]
 })
 export class AppRoutingModule { }

@@ -9,6 +9,8 @@ import { ListEmployeesComponent } from './employees/list-employees.component';
 import { CreateEmployeeComponent } from './employees/create-employee.component';
 import { EditEmployeeComponent } from './employees/edit-employee.component';
 import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
+import { PageNotFoundComponent } from './pagenotfound/page-not-found.component';
+import { EmployeeDetailsComponent } from './employees/employee-details.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
     ListEmployeesComponent,
     CreateEmployeeComponent,
     EditEmployeeComponent,
-    EmployeeFilterPipe
+    EmployeeFilterPipe,
+    PageNotFoundComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule,
