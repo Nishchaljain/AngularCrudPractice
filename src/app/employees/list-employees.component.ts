@@ -52,7 +52,7 @@ export class ListEmployeesComponent implements OnInit {
 
   }
 
-  employeeDetail(empID: number) {
+  viewEmployee(empID: number) {
     this._router.navigate(['/employeeDetail', empID], {
       queryParams: { 'searchTerm': this.searchTerm }
     });

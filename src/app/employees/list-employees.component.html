@@ -1,7 +1,6 @@
 <div class="container">
     <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search By Name"
-            style="width: 300px;" />
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search By Name" />
 
     </div>
     <div class="col-md-12">
@@ -26,13 +25,21 @@
                         <td>{{employee.empProjectName}}</td>
                         <td>{{employee.empManager}}</td>
                         <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <!-- <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-primary"
                                     (click)="onEditClick(employee.empId)">Edit</button>
-                                <button type="button" class="btn btn-primary"
+                                <button type="button" class="btn btn-danger"
                                     (click)="deleteEmployee(employee.empId)">Delete</button>
                                 <button type="button" class="btn btn-primary"
                                     (click)="employeeDetail(employee.empId)">Details</button>
+                            </div> -->
+                            <div>
+                                <button type="button" class="btn btn-primary"
+                                    (click)="onEditClick(employee.empId)">Edit</button>
+                                <button type="button" class="btn btn-danger"
+                                    (click)="deleteEmployee(employee.empId)">Delete</button>
+                                <button type="button" class="btn btn-primary"
+                                    (click)="viewEmployee(employee.empId)">Details</button>
                             </div>
                         </td>
                     </tr>
