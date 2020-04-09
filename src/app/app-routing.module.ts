@@ -4,11 +4,17 @@ import { ListEmployeesComponent } from './employees/list-employees.component';
 import { CreateEmployeeComponent } from './employees/create-employee.component';
 import { EditEmployeeComponent } from './employees/edit-employee.component';
 import { CreateEmployeeCanDeactivateGuardService } from './employees/create-employee-can-deactivate-guard.service'
+import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/list', pathMatch: 'full' },
-  { path: 'list', component: ListEmployeesComponent, pathMatch: 'full' },
+  {
+    path: 'list',
+    component: ListEmployeesComponent,
+    resolve: { employeeList: EmployeeListResolverService },
+    pathMatch: 'full'
+  },
   {
     path: 'create',
     component: CreateEmployeeComponent,
@@ -21,6 +27,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [CreateEmployeeCanDeactivateGuardService]
+  providers: [CreateEmployeeCanDeactivateGuardService, EmployeeListResolverService]
 })
 export class AppRoutingModule { }

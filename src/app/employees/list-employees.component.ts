@@ -30,28 +30,26 @@ export class ListEmployeesComponent implements OnInit {
 
 
   constructor(private _empService: EmployeeService, private _router: Router,
-    private _activatedRoute: ActivatedRoute) { }
-
-  ngOnInit(): void {
-
+    private _activatedRoute: ActivatedRoute) {
+    this.employees = this._activatedRoute.snapshot.data['employeeList'];
     this.selectedEmployeeId = +this._activatedRoute.snapshot.params['id'];
-    this._empService.getEmployees().subscribe((response) => {
-      this.employees = response;
-      if (this._activatedRoute.snapshot.queryParamMap.has('searchTerm')) {
-        this.searchTerm = this._activatedRoute.snapshot.queryParamMap.get('searchTerm');
-      }
-      else {
-        this.filteredEmployees = this.employees;
-      }
-    });
-
-
 
     // console.log(this._activatedRoute.snapshot.queryParamMap.get('searchTerm'));
     // console.log(this._activatedRoute.snapshot.queryParamMap.getAll('searchTerm'));
     // console.log(this._activatedRoute.snapshot.queryParamMap.keys);
     // console.log(this._activatedRoute.snapshot.paramMap.keys);
     // console.log(this._activatedRoute.snapshot.params['id']);  // giving the value of the optional parameter
+
+    if (this._activatedRoute.snapshot.queryParamMap.has('searchTerm')) {
+      this.searchTerm = this._activatedRoute.snapshot.queryParamMap.get('searchTerm');
+    }
+    else {
+      this.filteredEmployees = this.employees;
+    }
+  }
+
+  ngOnInit(): void {
+
   }
 
   onEditClick(empID: number) {
