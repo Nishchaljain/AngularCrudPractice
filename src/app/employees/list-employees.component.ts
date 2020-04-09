@@ -40,7 +40,9 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   onEditClick(empID: number) {
-    this._router.navigate(['/editEmployee', empID]);
+    this._router.navigate(['/editEmployee', empID], {
+      queryParams: { 'searchTerm': this.searchTerm, 'testParams': 'testValue' }
+    });
   }
   deleteEmployee(empID: number) {
     this._empService.deleteEmployee(empID);
