@@ -17,7 +17,7 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let employee of employees | employeeCustomFilter:searchTerm"
+                    <tr *ngFor="let employee of filteredEmployees"
                         [class.text-danger]="selectedEmployeeId ===employee.empId">
                         <td>{{employee.empId}}</td>
                         <td>{{employee.empName}}</td>

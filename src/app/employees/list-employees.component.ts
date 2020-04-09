@@ -12,8 +12,22 @@ import { Router, ActivatedRoute } from '@angular/router'
 export class ListEmployeesComponent implements OnInit {
 
   employees: Employee[];
+  filteredEmployees: Employee[];
   selectedEmployeeId: number;
-  searchTerm: string;
+  private _searchTerm: string;
+  get searchTerm(): string {
+    return this._searchTerm;
+  }
+
+  set searchTerm(value: string) {
+    this._searchTerm = value;
+    this.filteredEmployees = this.filterEmployee(value);
+  }
+
+  filterEmployee(searchTerm: string) {
+    return this.employees.filter(emp => emp.empName.toLowerCase().indexOf(searchTerm) != -1);
+  }
+
 
   constructor(private _empService: EmployeeService, private _router: Router,
     private _activatedRoute: ActivatedRoute) { }
@@ -22,6 +36,7 @@ export class ListEmployeesComponent implements OnInit {
 
     this.selectedEmployeeId = +this._activatedRoute.snapshot.params['id'];
     this.employees = this._empService.getEmployees();
+    this.filteredEmployees = this.employees;
   }
 
   onEditClick(empID: number) {

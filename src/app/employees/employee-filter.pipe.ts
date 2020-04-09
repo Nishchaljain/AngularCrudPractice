@@ -3,7 +3,8 @@ import { Employee } from '../Models/employee.model';
 
 
 @Pipe({
-    name: 'employeeCustomFilter'
+    name: 'employeeCustomFilter',
+    pure: true
 })
 
 export class EmployeeFilterPipe implements PipeTransform {
