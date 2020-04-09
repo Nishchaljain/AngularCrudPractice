@@ -59,9 +59,7 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   onEditClick(empID: number) {
-    this._router.navigate(['/editEmployee', empID], {
-      queryParams: { 'searchTerm': this.searchTerm }
-    });
+    this._router.navigate(['/edit', empID]);
   }
   deleteEmployee(empID: number) {
     this._empService.deleteEmployee(empID);

@@ -3,6 +3,7 @@ import { Employee } from '../Models/employee.model';
 import { Observable, observable } from 'rxjs';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Injectable({
@@ -60,7 +61,11 @@ export class EmployeeService {
     }
   ];
 
-  constructor() { }
+  constructor(private _activatedRoute: ActivatedRoute) {
+
+  }
+
+
 
   getEmployees(): Observable<Employee[]> {
     return Observable.of(this.employees).delay(2000);
@@ -70,8 +75,13 @@ export class EmployeeService {
     return this.employees.find(e => e.empId === empID);
   }
 
-  insertEmployee(employee: Employee) {
-    this.employees.push(employee);
+  insertEmployee(employee: Employee, paramEmpId: number) {
+    if (paramEmpId === 0) {
+      this.employees.push(employee);
+    } else {
+      const foundIndex = this.employees.findIndex(e => e.empId == employee.empId);
+      this.employees[foundIndex] = employee;
+    }
   }
 
   updateEmployee(employee: Employee) {

@@ -19,7 +19,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'create',
+    path: 'edit/:id',
     component: CreateEmployeeComponent,
     canDeactivate: [CreateEmployeeCanDeactivateGuardService],
     pathMatch: 'full'

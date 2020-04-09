@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Employee } from '../Models/employee.model';
 import { EmployeeService } from './employee.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 
@@ -24,14 +24,22 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   constructor(private _empService: EmployeeService,
-    private _router: Router) { }
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    debugger;
+    const id = +this._activatedRoute.snapshot.params['id'];
+    this.employee = Object.assign({}, this._empService.getEmployeeById(id));
   }
 
+
+
   onSaveEmployee() {
+    debugger;
+    const paramempId = +this._activatedRoute.snapshot.params['id'];
     const newEmployee = Object.assign({}, this.employee)
-    this._empService.insertEmployee(newEmployee);
+    this._empService.insertEmployee(newEmployee, paramempId);
     this.createEmployeeForm.reset();
     this._router.navigate(['/list'])
   }
