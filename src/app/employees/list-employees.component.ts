@@ -12,9 +12,15 @@ import { Router, ActivatedRoute } from '@angular/router'
 export class ListEmployeesComponent implements OnInit {
 
   employees: Employee[];
+
   filteredEmployees: Employee[];
+
   selectedEmployeeId: number;
+
   private _searchTerm: string;
+
+  confirmDelete = false;
+
   get searchTerm(): string {
     return this._searchTerm;
   }
@@ -31,14 +37,9 @@ export class ListEmployeesComponent implements OnInit {
 
   constructor(private _empService: EmployeeService, private _router: Router,
     private _activatedRoute: ActivatedRoute) {
+    debugger;
     this.employees = this._activatedRoute.snapshot.data['employeeList'];
     this.selectedEmployeeId = +this._activatedRoute.snapshot.params['id'];
-
-    // console.log(this._activatedRoute.snapshot.queryParamMap.get('searchTerm'));
-    // console.log(this._activatedRoute.snapshot.queryParamMap.getAll('searchTerm'));
-    // console.log(this._activatedRoute.snapshot.queryParamMap.keys);
-    // console.log(this._activatedRoute.snapshot.paramMap.keys);
-    // console.log(this._activatedRoute.snapshot.params['id']);  // giving the value of the optional parameter
 
     if (this._activatedRoute.snapshot.queryParamMap.has('searchTerm')) {
       this.searchTerm = this._activatedRoute.snapshot.queryParamMap.get('searchTerm');
@@ -63,6 +64,7 @@ export class ListEmployeesComponent implements OnInit {
   }
   deleteEmployee(empID: number) {
     this._empService.deleteEmployee(empID);
+    this._empService.deleteEmployeeFromFilteredEmployeeList(this.filteredEmployees, empID);
   }
 
 }

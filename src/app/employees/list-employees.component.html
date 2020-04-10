@@ -34,12 +34,20 @@
                                     (click)="employeeDetail(employee.empId)">Details</button>
                             </div> -->
                             <div>
-                                <button type="button" class="btn btn-primary"
-                                    (click)="onEditClick(employee.empId)">Edit</button>
-                                <button type="button" class="btn btn-danger"
-                                    (click)="deleteEmployee(employee.empId)">Delete</button>
-                                <button type="button" class="btn btn-primary"
+                                <button type=" button" class="btn btn-primary mr-1"
                                     (click)="viewEmployee(employee.empId)">Details</button>
+                                <button type="button" class="btn btn-primary  mr-1"
+                                    (click)="onEditClick(employee.empId)">Edit</button>
+                                <span *ngIf="confirmDelete">
+                                    <span>Are you sure you want delete?</span>
+                                    <button type="button" class="btn btn-danger"
+                                        (click)="deleteEmployee(employee.empId)">Yes</button>
+                                    <button type="button" class="btn btn-primary"
+                                        (click)="confirmDelete=false">No</button>
+                                </span>
+                                <button *ngIf="!confirmDelete" type="button" class="btn btn-danger"
+                                    (click)="confirmDelete=true">Delete</button>
+
                             </div>
                         </td>
                     </tr>

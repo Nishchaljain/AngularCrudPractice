@@ -95,4 +95,11 @@ export class EmployeeService {
       this.employees.splice(index, 1);
     }
   }
+
+  deleteEmployeeFromFilteredEmployeeList(filteredEmployees: Employee[], empid: number) {
+    const index = filteredEmployees.findIndex(e => e.empId === empid);
+    if (index !== -1) {
+      filteredEmployees.splice(index, 1);
+    }
+  }
 }
