@@ -5,7 +5,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 import { catchError } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -89,14 +89,22 @@ export class EmployeeService {
     return this.employees.find(e => e.empId === empID);
   }
 
-  insertEmployee(employee: Employee, paramEmpId: number) {
+  insertEmployee(employee: Employee, paramEmpId: number): Observable<Employee> {
     if (paramEmpId === 0) {
-      this.employees.push(employee);
+      return this._httpClient.post<Employee>('http://localhost:3000/employees', employee, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      }).pipe(catchError(this.handleError));
+
     } else {
       const foundIndex = this.employees.findIndex(e => e.empId == employee.empId);
       this.employees[foundIndex] = employee;
     }
   }
+
+  // This method is no longer in use as now we are handling the update logic in the insertEmployee method based on the emp id.
+  //If the empid is null we know its a new record or if its not null that means we need to update an existing record
 
   updateEmployee(employee: Employee) {
     const index = this.employees.findIndex(e => e.empId == employee.empId);

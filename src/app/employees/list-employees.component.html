@@ -20,8 +20,8 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let employee of filteredEmployees"
-                        [class.text-danger]="selectedEmployeeId ===employee.empId">
-                        <td>{{employee.empId}}</td>
+                        [class.text-danger]="selectedEmployeeId ===employee.id">
+                        <td>{{employee.id}}</td>
                         <td>{{employee.empName}}</td>
                         <td>{{employee.empDesignation}}</td>
                         <td>{{employee.empSalary}}</td>

@@ -38,10 +38,18 @@ export class CreateEmployeeComponent implements OnInit {
   onSaveEmployee() {
 
     const paramempId = +this._activatedRoute.snapshot.params['id'];
-    const newEmployee = Object.assign({}, this.employee)
-    this._empService.insertEmployee(newEmployee, paramempId);
-    this.createEmployeeForm.reset();
-    this._router.navigate(['/list'])
+
+    this._empService.insertEmployee(this.employee, paramempId)
+      .subscribe((data: Employee) => {
+        console.log(data);
+        this.createEmployeeForm.reset();
+        this._router.navigate(['/list'])
+      },
+        (error: any) => {
+          console.log(error);
+
+        })
+
   }
 
 }
