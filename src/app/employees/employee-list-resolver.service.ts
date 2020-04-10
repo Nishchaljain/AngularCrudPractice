@@ -9,14 +9,11 @@ import { ResolvedEmployeelist } from './resolved-employeelist.model';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeListResolverService implements Resolve<ResolvedEmployeelist> {
+export class EmployeeListResolverService implements Resolve<Employee[] | string> {
   constructor(private _empService: EmployeeService) { }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedEmployeelist> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Employee[] | string> {
     return this._empService.getEmployees()
-      .pipe(
-        map((employeeList) => new ResolvedEmployeelist(employeeList)),
-
-        catchError((err: any) => Observable.of(new ResolvedEmployeelist(null, err)))
+      .pipe(catchError((err: string) => Observable.of(err))
 
       );
   }

@@ -41,14 +41,14 @@ export class ListEmployeesComponent implements OnInit {
   constructor(private _empService: EmployeeService, private _router: Router,
     private _activatedRoute: ActivatedRoute) {
 
-    const resolvedEmployeeList: ResolvedEmployeelist = this._activatedRoute.snapshot.data['employeeList'];
+    const resolvedData: Employee[] | string = this._activatedRoute.snapshot.data['employeeList'];
 
 
-    if (resolvedEmployeeList.error == null) {
-      this.employees = resolvedEmployeeList.employeeList;
+    if (Array.isArray(resolvedData)) {
+      this.employees = resolvedData;
     }
     else {
-      this.error = resolvedEmployeeList.error;
+      this.error = resolvedData;
     }
 
     this.selectedEmployeeId = +this._activatedRoute.snapshot.params['id'];
