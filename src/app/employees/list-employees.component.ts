@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './employee.service';
 import { Employee } from '../Models/employee.model';
 import { Router, ActivatedRoute } from '@angular/router'
+import { ResolvedEmployeelist } from './resolved-employeelist.model';
 
 
 
@@ -21,6 +22,8 @@ export class ListEmployeesComponent implements OnInit {
 
   confirmDelete = false;
 
+  error: string;
+
   get searchTerm(): string {
     return this._searchTerm;
   }
@@ -37,8 +40,17 @@ export class ListEmployeesComponent implements OnInit {
 
   constructor(private _empService: EmployeeService, private _router: Router,
     private _activatedRoute: ActivatedRoute) {
-    debugger;
-    this.employees = this._activatedRoute.snapshot.data['employeeList'];
+
+    const resolvedEmployeeList: ResolvedEmployeelist = this._activatedRoute.snapshot.data['employeeList'];
+
+
+    if (resolvedEmployeeList.error == null) {
+      this.employees = resolvedEmployeeList.employeeList;
+    }
+    else {
+      this.error = resolvedEmployeeList.error;
+    }
+
     this.selectedEmployeeId = +this._activatedRoute.snapshot.params['id'];
 
     if (this._activatedRoute.snapshot.queryParamMap.has('searchTerm')) {

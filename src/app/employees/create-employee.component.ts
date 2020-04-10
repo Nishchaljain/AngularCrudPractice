@@ -28,7 +28,7 @@ export class CreateEmployeeComponent implements OnInit {
     private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    debugger;
+
     const id = +this._activatedRoute.snapshot.params['id'];
     this.employee = Object.assign({}, this._empService.getEmployeeById(id));
   }
@@ -36,7 +36,7 @@ export class CreateEmployeeComponent implements OnInit {
 
 
   onSaveEmployee() {
-    debugger;
+
     const paramempId = +this._activatedRoute.snapshot.params['id'];
     const newEmployee = Object.assign({}, this.employee)
     this._empService.insertEmployee(newEmployee, paramempId);

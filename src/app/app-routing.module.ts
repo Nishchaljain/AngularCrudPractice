@@ -8,6 +8,7 @@ import { EmployeeListResolverService } from './employees/employee-list-resolver.
 import { PageNotFoundComponent } from './pagenotfound/page-not-found.component';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
 import { EmployeeDetailsGaurdService } from './employees/employee-details-gaurd.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -44,7 +45,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   exports: [RouterModule],
   providers: [

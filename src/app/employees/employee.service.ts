@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../Models/employee.model';
-import { Observable, observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
-import { ActivatedRoute } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 
 @Injectable({
@@ -61,14 +63,26 @@ export class EmployeeService {
     }
   ];
 
-  constructor(private _activatedRoute: ActivatedRoute) {
+  constructor(private _httpClient: HttpClient) {
 
   }
 
 
 
   getEmployees(): Observable<Employee[]> {
-    return Observable.of(this.employees).delay(2000);
+    return this._httpClient.get<Employee[]>('http://localhost:3000/employees')
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(errorResponse: HttpErrorResponse) {
+    if (errorResponse.error instanceof ErrorEvent) {
+      console.log('Client side error: ', errorResponse.error.message);
+    }
+    else {
+      console.log('Server side error: ', errorResponse);
+    }
+
+    return throwError('There is a problem with the service. We are notified & working on it. Please try again later.');
   }
 
   getEmployeeById(empID: number): Employee {

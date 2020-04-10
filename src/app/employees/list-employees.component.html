@@ -1,8 +1,11 @@
 <div class="container">
     <div class="form-group">
         <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search By Name" />
-
     </div>
+    <div *ngIf="error" class="text-danger">
+        {{error}}
+    </div>
+    <br>
     <div class="col-md-12">
         <div class="row">
             <table class="table table-hover">
