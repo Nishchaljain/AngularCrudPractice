@@ -1,10 +1,10 @@
 <br>
-<div class="container">
+<div class="container" *ngIf="employee">
     <form>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Employee ID</label>
             <div class="col-sm-10">
-                <input name="empID" readonly [(ngModel)]="employee.empId" type="text" class="form-control" id="empID">
+                <input name="empID" readonly [(ngModel)]="employee.id" type="text" class="form-control" id="empID">
             </div>
 
         </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-2 offset-2">
-                <a class="btn btn-primary" [routerLink]="['/list',{id:employee.empId}]"
+                <a class="btn btn-primary" [routerLink]="['/list',{id:employee.id}]"
                     queryParamsHandling="preserve">Back</a>
 
             </div>

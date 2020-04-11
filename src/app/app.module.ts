@@ -11,6 +11,7 @@ import { EditEmployeeComponent } from './employees/edit-employee.component';
 import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
 import { PageNotFoundComponent } from './pagenotfound/page-not-found.component';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
+import { SortEmployeesPipe } from './employees/sort-employees.pipe';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { EmployeeDetailsComponent } from './employees/employee-details.component
     EditEmployeeComponent,
     EmployeeFilterPipe,
     PageNotFoundComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    SortEmployeesPipe
   ],
   imports: [
     BrowserModule,

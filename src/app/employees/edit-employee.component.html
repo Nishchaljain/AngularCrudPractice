@@ -4,8 +4,8 @@
         <div class="form-group row">
             <label for="empID" class="col-sm-2 col-form-label">Employee ID</label>
             <div class="col-sm-10">
-                <input required name="empID" [(ngModel)]="employee.empId" #empID="ngModel" type="text"
-                    class="form-control" id="empID" placeholder="Employee ID">
+                <input required name="empID" [(ngModel)]="employee.id" #empID="ngModel" type="text" class="form-control"
+                    id="empID" placeholder="Employee ID">
                 <span class="help-block text-danger" *ngIf="empID.invalid && empID.touched">Employee ID is
                     required.</span>
             </div>
@@ -59,7 +59,7 @@
         <div class="form-group row">
             <div class="col-sm-2 offset-2">
                 <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Update</button>
-                <a class="btn btn-primary" [routerLink]="['/list',{id:employee.empId}]"
+                <a class="btn btn-primary" [routerLink]="['/list',{id:employee.id}]"
                     queryParamsHandling="preserve">Back</a>
             </div>
         </div>

@@ -1,16 +1,8 @@
 {
   "employees": [
     {
-      "id": 1,
-      "empName": "Nishchal",
-      "empDesignation": "Senior Software Engineer",
-      "empSalary": 100000,
-      "empProjectName": "Sedgwick",
-      "empManager": "Namitha"
-    },
-    {
       "id": 2,
-      "empName": "Pawan",
+      "empName": "PawanKumar",
       "empDesignation": "Project Lead",
       "empSalary": 150000,
       "empProjectName": "Sedgwick",
@@ -34,29 +26,19 @@
     },
     {
       "id": 5,
-      "empName": "Nagaraj",
-      "empDesignation": "Tester",
-      "empSalary": 100000,
+      "empName": "Neha gill",
+      "empDesignation": "Senior Software Engineer",
+      "empSalary": "100000",
       "empProjectName": "Sedgwick",
       "empManager": "Namitha"
     },
     {
-      "empId": 6,
-      "empName": "Neha",
+      "id": 1,
+      "empName": "ANishchal",
       "empDesignation": "Senior Software Engineer",
       "empSalary": "100000",
       "empProjectName": "Sedgwick",
-      "empManager": "Namitha",
-      "id": 6
-    },
-    {
-      "empId": 7,
-      "empName": "Shrikant",
-      "empDesignation": "Senior Software Engineer",
-      "empSalary": "12345",
-      "empProjectName": "Sedgwick",
-      "empManager": "Namitha",
-      "id": 7
+      "empManager": "Namitha"
     }
   ]
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './employee.service';
 import { Employee } from '../Models/employee.model';
 import { Router, ActivatedRoute } from '@angular/router'
-import { ResolvedEmployeelist } from './resolved-employeelist.model';
+
 
 
 
@@ -75,8 +75,10 @@ export class ListEmployeesComponent implements OnInit {
     this._router.navigate(['/edit', empID]);
   }
   deleteEmployee(empID: number) {
-    this._empService.deleteEmployee(empID);
-    this._empService.deleteEmployeeFromFilteredEmployeeList(this.filteredEmployees, empID);
+    this._empService.deleteEmployee(empID).subscribe(() => console.log('Employee deleted successfuly.'),
+      (error: any) => console.log(error));
+    // this._empService.deleteEmployeeFromFilteredEmployeeList(this.filteredEmployees, empID).subscribe((success) => console.log(success),
+    //   (error: any) => console.log(error));
   }
 
 }

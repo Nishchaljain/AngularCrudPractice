@@ -1,4 +1,5 @@
 <div class="container">
+    <br>
     <div class="form-group">
         <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search By Name" />
     </div>
@@ -19,7 +20,7 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let employee of filteredEmployees"
+                    <tr *ngFor="let employee of filteredEmployees | employeeSort:'id'"
                         [class.text-danger]="selectedEmployeeId ===employee.id">
                         <td>{{employee.id}}</td>
                         <td>{{employee.empName}}</td>
@@ -28,23 +29,15 @@
                         <td>{{employee.empProjectName}}</td>
                         <td>{{employee.empManager}}</td>
                         <td>
-                            <!-- <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-primary"
-                                    (click)="onEditClick(employee.empId)">Edit</button>
-                                <button type="button" class="btn btn-danger"
-                                    (click)="deleteEmployee(employee.empId)">Delete</button>
-                                <button type="button" class="btn btn-primary"
-                                    (click)="employeeDetail(employee.empId)">Details</button>
-                            </div> -->
                             <div>
                                 <button type=" button" class="btn btn-primary mr-1"
-                                    (click)="viewEmployee(employee.empId)">Details</button>
+                                    (click)="viewEmployee(employee.id)">Details</button>
                                 <button type="button" class="btn btn-primary  mr-1"
-                                    (click)="onEditClick(employee.empId)">Edit</button>
+                                    (click)="onEditClick(employee.id)">Edit</button>
                                 <span *ngIf="confirmDelete">
                                     <span>Are you sure you want delete?</span>
                                     <button type="button" class="btn btn-danger"
-                                        (click)="deleteEmployee(employee.empId)">Yes</button>
+                                        (click)="deleteEmployee(employee.id)">Yes</button>
                                     <button type="button" class="btn btn-primary"
                                         (click)="confirmDelete=false">No</button>
                                 </span>

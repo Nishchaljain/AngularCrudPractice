@@ -15,7 +15,7 @@ export class CreateEmployeeComponent implements OnInit {
   @ViewChild('employeeForm') public createEmployeeForm: NgForm
 
   employee: Employee = {
-    empId: null,
+    id: null,
     empName: null,
     empDesignation: null,
     empSalary: null,
@@ -30,25 +30,39 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit(): void {
 
     const id = +this._activatedRoute.snapshot.params['id'];
-    this.employee = Object.assign({}, this._empService.getEmployeeById(id));
+    this._empService.getEmployeeById(id).subscribe(
+      (employee) => this.employee = employee,
+      (error: any) => console.log(error))
   }
 
 
 
   onSaveEmployee() {
+    const empId = +this._activatedRoute.snapshot.params['id'];
+    if (empId == 0) {
+      this._empService.insertEmployee(this.employee)
+        .subscribe((data: Employee) => {
+          console.log(data);
+          this.createEmployeeForm.reset();
+          this._router.navigate(['/list'])
+        },
+          (error: any) => {
+            console.log(error);
 
-    const paramempId = +this._activatedRoute.snapshot.params['id'];
+          })
+    }
+    else {
+      this._empService.updateEmployee(this.employee)
+        .subscribe(() => {
+          this.createEmployeeForm.reset();
+          this._router.navigate(['/list'])
+        },
+          (error: any) => {
+            console.log(error);
 
-    this._empService.insertEmployee(this.employee, paramempId)
-      .subscribe((data: Employee) => {
-        console.log(data);
-        this.createEmployeeForm.reset();
-        this._router.navigate(['/list'])
-      },
-        (error: any) => {
-          console.log(error);
+          })
+    }
 
-        })
 
   }
 

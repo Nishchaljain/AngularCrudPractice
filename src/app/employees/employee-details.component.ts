@@ -17,7 +17,8 @@ export class EmployeeDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this._activatedRoute.snapshot.params['id'];
-    this.employee = Object.assign({}, this._empService.getEmployeeById(id));
+    this._empService.getEmployeeById(id).subscribe((employee) => this.employee = employee,
+      (error: any) => console.log(error))
   }
 
 }
